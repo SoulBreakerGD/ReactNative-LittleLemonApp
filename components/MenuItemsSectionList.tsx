@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, SectionList } from 'react-native';
+import { View, Text, StyleSheet, SectionList, Pressable } from 'react-native';
 
 interface MenuItem {
     title: string;
@@ -53,7 +53,6 @@ const menuItemsToDisplay: MenuItem[] = [
     }
 ];
 
-
 const Item = ({ name, price }: { name: string; price: string }) => (
     <View style={menuStyles.innerContainer}>
         <Text style={menuStyles.itemText}>{name}</Text>
@@ -72,14 +71,41 @@ const MenuItemsSectionList = () => {
         </View>
     );
 
+    const [showMenu, setShowMenu] = React.useState(false);
+
     return (
         <View style={menuStyles.container}>
-            <SectionList
-                sections={menuItemsToDisplay}
-                keyExtractor={(item: { name: string }, index: number) => item.name.toString() + index}
-                renderItem={renderItem}
-                renderSectionHeader={renderSectionHeader}
-            />
+            {showMenu === true ? 
+                <>
+                    <Pressable
+                        style={menuStyles.button}
+                        onPress={() => {
+                            setShowMenu(!showMenu);
+                        }}
+                    >
+                        <Text style={menuStyles.buttonText}>
+                            {showMenu ? 'Home' : 'Show Menu'}
+                        </Text>
+                    </Pressable>
+                    <SectionList
+                    sections={menuItemsToDisplay}
+                    keyExtractor={(item: { name: string }, index: number) => item.name.toString() + index}
+                    renderItem={renderItem}
+                    renderSectionHeader={renderSectionHeader}
+                    />
+                </>
+                :
+                <Pressable
+                    style={menuStyles.button}
+                    onPress={() => {
+                        setShowMenu(!showMenu);
+                    }}
+                >
+                    <Text style={menuStyles.buttonText}>
+                        {showMenu ? 'Home' : 'Show Menu'}
+                    </Text>
+                </Pressable>
+            }
         </View>
     );
 };
@@ -106,6 +132,21 @@ const menuStyles = StyleSheet.create({
         fontSize: 26,
         flexWrap: 'wrap',
         textAlign: 'center',
+    },
+    button: {
+        fontSize: 22,
+        padding: 10,
+        marginVertical: 20,
+        margin: 100,
+        backgroundColor: '#EE9972',
+        borderColor: '#EE9972',
+        borderWidth: 1,
+        borderRadius: 50
+    },
+    buttonText: {
+        color: 'black',
+        textAlign: 'center',
+        fontSize: 25,
     },
 });
 

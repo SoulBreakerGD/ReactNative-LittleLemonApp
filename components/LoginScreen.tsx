@@ -31,7 +31,7 @@ const LoginScreen = ({ }: LoginScreenProps) => {
                         clearButtonMode='always'
                     />
                     <Pressable
-                        style={styles.loginButton}
+                        style={styles.button}
                         onPress={() => {
                             setLogged(!logged);
                         }}
@@ -40,9 +40,20 @@ const LoginScreen = ({ }: LoginScreenProps) => {
                     </Pressable>
                 </>
                 :
-                <Text style={styles.regularText}>
-                    Login successful!
-                </Text>
+                <>
+                    <Text style={styles.regularText}>
+                        Login successful!
+                    </Text>
+                    <Pressable
+                        style={styles.button}
+                        onPress={() => {
+                            setLogged(!logged);
+                        }}
+                    >
+                        <Text style={styles.buttonText}>Logout</Text>
+                    </Pressable>
+                </>
+                
             }
 
         </ScrollView>
@@ -76,7 +87,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#EDEFEE',
         color: '#333333',
     },
-    loginButton: {
+    button: {
         fontSize: 22,
         padding: 10,
         marginVertical: 20,

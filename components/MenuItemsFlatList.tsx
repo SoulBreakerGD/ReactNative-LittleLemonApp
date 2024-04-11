@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Pressable } from 'react-native';
 
 interface MenuItem {
     name: string;
@@ -40,13 +40,41 @@ const Item = ({ name, price }: MenuItem) => (
 
 const MenuItemsFlatList = () => {
     const renderItem = ({ item }: { item: MenuItem }) => <Item name={item.name} price={item.price} id={item.id} />;
+    
+    const [showMenu, setShowMenu] = React.useState(false);
 
     return (
         <View style={menuStyles.container}>
-            <FlatList
-                data={menuItemsToDisplay}
-                keyExtractor={(item: MenuItem) => item.id}
-                renderItem={renderItem}></FlatList>
+            {showMenu === true ? 
+                <>
+                    <Pressable
+                        style={menuStyles.button}
+                        onPress={() => {
+                            setShowMenu(!showMenu);
+                        }}
+                    >
+                        <Text style={menuStyles.buttonText}>
+                            {showMenu ? 'Home' : 'Show Menu'}
+                        </Text>
+                    </Pressable>
+                    <FlatList
+                    data={menuItemsToDisplay}
+                    keyExtractor={(item: MenuItem) => item.id}
+                    renderItem={renderItem}
+                    />
+                </>
+                :
+                <Pressable
+                    style={menuStyles.button}
+                    onPress={() => {
+                        setShowMenu(!showMenu);
+                    }}
+                >
+                    <Text style={menuStyles.buttonText}>
+                        {showMenu ? 'Home' : 'Show Menu'}
+                    </Text>
+                </Pressable>
+            }
         </View>
     );
 };
@@ -64,6 +92,21 @@ const menuStyles = StyleSheet.create({
     itemText: {
         color: '#F4CE14',
         fontSize: 20,
+    },
+    button: {
+        fontSize: 22,
+        padding: 10,
+        marginVertical: 20,
+        margin: 100,
+        backgroundColor: '#EE9972',
+        borderColor: '#EE9972',
+        borderWidth: 1,
+        borderRadius: 50
+    },
+    buttonText: {
+        color: 'black',
+        textAlign: 'center',
+        fontSize: 25,
     },
 });
 
