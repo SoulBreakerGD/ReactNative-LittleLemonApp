@@ -1,9 +1,11 @@
 import React from 'react';
 import { ScrollView, Text, StyleSheet, Pressable, TextInput } from 'react-native';
 
-interface LoginScreenProps { }
+interface LoginScreenProps {
+    navigation: any,
+}
 
-const LoginScreen = ({ }: LoginScreenProps) => {
+const LoginScreen = ({ navigation }: LoginScreenProps) => {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [logged, setLogged] = React.useState(false);
@@ -46,11 +48,9 @@ const LoginScreen = ({ }: LoginScreenProps) => {
                     </Text>
                     <Pressable
                         style={styles.button}
-                        onPress={() => {
-                            setLogged(!logged);
-                        }}
+                        onPress={() => navigation.navigate('BottomTabNavigators')}
                     >
-                        <Text style={styles.buttonText}>Logout</Text>
+                        <Text style={styles.buttonText}>Home</Text>
                     </Pressable>
                 </>
                 
@@ -67,14 +67,16 @@ const styles = StyleSheet.create({
     headerText: {
         padding: 40,
         fontSize: 30,
-        color: '#EDEFEE',
+        // color: '#EDEFEE',
+        color: 'black',
         textAlign: 'center',
     },
     regularText: {
         fontSize: 24,
         padding: 20,
         marginVertical: 8,
-        color: '#EDEFEE',
+        // color: '#EDEFEE',
+        color: 'black',
         textAlign: 'center',
     },
     inputBox: {

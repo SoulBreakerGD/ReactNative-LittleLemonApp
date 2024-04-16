@@ -1,9 +1,11 @@
 import React from 'react';
-import { ScrollView, Text, StyleSheet, TextInput, Alert, Image, View } from 'react-native';
+import { ScrollView, Text, StyleSheet, TextInput, Alert, Image, View, Pressable } from 'react-native';
 
-interface WelcomeScreenProps { }
+interface WelcomeScreenProps {
+    navigation: any;
+}
 
-const WelcomeScreen = ({ }: WelcomeScreenProps) => {
+const WelcomeScreen = ({ navigation }: WelcomeScreenProps) => {
     const [firstName, onChangeFirstName] = React.useState('');
 
     return (
@@ -11,7 +13,7 @@ const WelcomeScreen = ({ }: WelcomeScreenProps) => {
             <View style={styles.wrapper}>
                 <Image
                     style={styles.logo}
-                    source={require('../img/littleLemonLogo.png')}
+                    source={require('../../img/littleLemonLogo.png')}
                     resizeMode='center'
                     accessible={true}
                     accessibilityLabel={'Little Lemon Logo'}
@@ -35,30 +37,36 @@ const WelcomeScreen = ({ }: WelcomeScreenProps) => {
             <Text style={styles.title}>
                 Little Lemon, your local Mediterranean Bistro
             </Text>
+            <Pressable 
+                style={styles.button} 
+                onPress={() => navigation.navigate('MenuItemsSectionList')}
+            >
+                <Text style={styles.buttonText}>View Menu</Text>
+            </Pressable>
             <Image
                 style={styles.image}
-                source={require('../img/Picture1.png')}
+                source={require('../../img/Picture1.png')}
                 resizeMode="cover"
                 accessible={true}
                 accessibilityLabel={'Little Lemon Logo'}
             />
             <Image
                 style={styles.image}
-                source={require('../img/Picture2.png')}
+                source={require('../../img/Picture2.png')}
                 resizeMode="cover"
                 accessible={true}
                 accessibilityLabel={'Little Lemon Logo'}
             />
             <Image
                 style={styles.image}
-                source={require('../img/Picture3.png')}
+                source={require('../../img/Picture3.png')}
                 resizeMode="cover"
                 accessible={true}
                 accessibilityLabel={'Little Lemon Logo'}
             />
             <Image
                 style={styles.image}
-                source={require('../img/Picture4.png')}
+                source={require('../../img/Picture4.png')}
                 resizeMode="cover"
                 accessible={true}
                 accessibilityLabel={'Little Lemon Logo'}
@@ -83,6 +91,7 @@ const styles = StyleSheet.create({
         padding: 10,
         fontSize: 30,
         // color: '#EDEFEE',
+        color: 'black',
         textAlign: 'center',
         display: 'flex',
     },
@@ -109,7 +118,7 @@ const styles = StyleSheet.create({
         display: 'flex',
     },
     image: {
-        width: 325,
+        width: '95%',
         height: 250,
         borderRadius: 10,
         margin: 10,
@@ -121,7 +130,22 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 20,
         fontWeight: 'bold',
-    }
+    },
+    button: {
+        fontSize: 22,
+        padding: 10,
+        marginVertical: 20,
+        margin: 100,
+        backgroundColor: '#EE9972',
+        borderColor: '#EE9972',
+        borderWidth: 1,
+        borderRadius: 50
+    },
+    buttonText: {
+        color: 'black',
+        textAlign: 'center',
+        fontSize: 25,
+    },
 });
 
 export default WelcomeScreen;
