@@ -102,7 +102,7 @@ const MenuItemsSectionList = () => {
                     }}
                 >
                     <Text style={menuStyles.buttonText}>
-                        {showMenu ? 'Home' : 'Show Menu'}
+                        {showMenu ? 'Hide' : 'Show Menu'}
                     </Text>
                 </Pressable>
             }

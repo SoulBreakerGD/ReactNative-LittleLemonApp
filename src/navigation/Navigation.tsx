@@ -9,8 +9,6 @@ import {
     LoginScreen,
 } from '../components';
 import IconCustom from '../components/IconCustom';
-import Icon from 'react-native-vector-icons/Ionicons';
-// import Ionicons from '@expo/vector-icons/Ionicons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export enum Routes {
@@ -61,13 +59,49 @@ function BottomTabNavigators() {
                 component={WelcomeScreen}
                 options={{
                     tabBarShowLabel: false,
-                    // tabBarIcon: ({ color, focused }) => (
-                    //     <Ionicons name='md-checkmark-circle' size={32} color='green' />
-                    // ),
+                    tabBarIcon: ({ color, focused }) => (
+                        <IconCustom
+                            name={focused ? 'home' : 'home-outline'}
+                            color={color}
+                            focused={focused}
+                        />
+                    ),
+                    tabBarInactiveTintColor: 'gray',
+                    tabBarActiveTintColor: 'tomato',
                 }} 
             />
-            <Tab.Screen name='MenuItemsFlatList' component={MenuItemsFlatList} options={{ title: 'Menu Flat' }} />
-            <Tab.Screen name='MenuItemsSectionList' component={MenuItemsSectionList} options={{ title: 'Menu Section' }} />
+            <Tab.Screen 
+                name='MenuItemsFlatList' 
+                component={MenuItemsFlatList} 
+                options={{
+                    tabBarShowLabel: false,
+                    tabBarIcon: ({ color, focused }) => (
+                        <IconCustom
+                            name={focused ? 'information' : 'list'}
+                            color={color}
+                            focused={focused}
+                        />
+                    ),
+                    tabBarInactiveTintColor: 'gray',
+                    tabBarActiveTintColor: 'tomato',
+                }} 
+            />
+            <Tab.Screen 
+                name='MenuItemsSectionList' 
+                component={MenuItemsSectionList} 
+                options={{
+                    tabBarShowLabel: false,
+                    tabBarIcon: ({ color, focused }) => (
+                        <IconCustom
+                            name={focused ? 'information' : 'list'}
+                            color={color}
+                            focused={focused}
+                        />
+                    ),
+                    tabBarInactiveTintColor: 'gray',
+                    tabBarActiveTintColor: 'tomato',
+                }} 
+            />
         </Tab.Navigator>
     );
 }
