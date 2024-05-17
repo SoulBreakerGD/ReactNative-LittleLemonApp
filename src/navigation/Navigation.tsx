@@ -98,6 +98,9 @@ function BottomTabNavigators() {
                             focused={focused}
                         />
                     ),
+                    // tabBarIcon: ({ color, size }) => (
+                    //     <MaterialCommunityIcons name="home" color={color} size={size} />
+                    //   ),
                     tabBarInactiveTintColor: 'gray',
                     tabBarActiveTintColor: 'tomato',
                 }} 
